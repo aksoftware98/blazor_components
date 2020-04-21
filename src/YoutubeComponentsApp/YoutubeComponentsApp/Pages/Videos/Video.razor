@@ -1,0 +1,16 @@
+﻿<div class="component-box">
+    <iframe width="560" height="315"
+            src="@SelectedVideo.Url"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+
+    <h3>@SelectedVideo.Title</h3>
+    <p>@SelectedVideo.PublishedDate.ToString("D")</p>
+    <hr />
+
+    <Comments VideoComments="SelectedVideo.Comments" />
+</div>
+@code {
+    [Parameter]
+    public YoutubeComponentsApp.Models.VideoDetails SelectedVideo { get; set; }
+}

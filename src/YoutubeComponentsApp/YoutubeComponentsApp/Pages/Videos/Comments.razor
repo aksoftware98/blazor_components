@@ -1,0 +1,35 @@
+﻿<div class="component-box">
+    <h3>Video's Comments</h3>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <input type="text" placeholder="Description" class="form-control" @bind-value="description" />
+            </div>
+            <button class="btn btn-primary btn-block" @onclick="InsertComment">Insert</button>
+        </div>
+    </div>
+    <hr />
+    @foreach (var item in VideoComments)
+    {
+        <div class="box-card">
+            <div class="row">
+                <img src="/images/default.png" class="comment-avatar" />
+                <h4 class="comment-content">@item</h4>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<string> VideoComments { get; set; }
+
+    string description = string.Empty;
+
+    void InsertComment()
+    {
+        VideoComments.Add(description);
+        description = string.Empty;
+    }
+}

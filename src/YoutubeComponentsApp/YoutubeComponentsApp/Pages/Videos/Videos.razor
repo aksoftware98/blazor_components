@@ -1,0 +1,30 @@
+﻿@page "/videos"
+@inject YoutubeComponentsApp.Services.IVideosSerivce videosService 
+
+<h2>My Library</h2>
+
+<div class="row">
+    <div class="col-7">
+        <Video SelectedVideo="selectedVideo"/>
+    </div>
+    <div class="col-5">
+        <VideosCollection Videos="videos" SelectVideo="SelectVideo"/> 
+    </div>
+</div>
+
+@code {
+
+    List<YoutubeComponentsApp.Models.VideoDetails> videos = new List<Models.VideoDetails>();
+    YoutubeComponentsApp.Models.VideoDetails selectedVideo = new Models.VideoDetails();
+
+    protected override void OnInitialized()
+    {
+        videos = videosService.GetVideos();
+        selectedVideo = videos.FirstOrDefault();
+    }
+
+    void SelectVideo(YoutubeComponentsApp.Models.VideoDetails video)
+    {
+        selectedVideo = video;
+    }
+}
